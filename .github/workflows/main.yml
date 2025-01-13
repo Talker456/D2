@@ -37,9 +37,9 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/demo
 
 
-      ## deploy to production
+      ## deploy to prod
       - name: Deploy to prod
-        uses: appleboy/ssh-action@v0.1.7
+        uses: appleboy/ssh-action@master
         id: deploy-prod
         if: contains(github.ref, 'master')
         with:
