@@ -39,7 +39,7 @@ jobs:
 
       ## deploy to production
       - name: Deploy to prod
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.7
         id: deploy-prod
         if: contains(github.ref, 'master')
         with:
