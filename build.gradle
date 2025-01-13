@@ -18,6 +18,10 @@ bootJar {
     duplicatesStrategy = 'exclude'
 }
 
+jar {
+    enabled = false
+}
+
 repositories {
     mavenCentral()
 }
