@@ -39,17 +39,17 @@ jobs:
 
 
       ## deploy to production
-#      - name: Deploy to prod
-#        uses: appleboy/ssh-action@master
-#        id: deploy-prod
-#        if: contains(github.ref, 'master')
-#        with:
-#          host: ${{ secrets.HOST_PROD }} # EC2 퍼블릭 IPv4 DNS
-#          username: ubuntu
-#          key: ${{ secrets.PRIVATE_KEY }}
-#          envs: GITHUB_SHA
-#          script: |
-#            sudo docker ps
-#            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/docker-test-prod
-#            sudo docker run -d -p 8082:8082 ${{ secrets.DOCKER_USERNAME }}/docker-test-prod
-#            sudo docker image prune -f
+      - name: Deploy to prod
+        uses: appleboy/ssh-action@master
+        id: deploy-prod
+        if: contains(github.ref, 'master')
+        with:
+          host: ${{ secrets.HOST_PROD }} # EC2 퍼블릭 IPv4 DNS
+          username: ubuntu
+          key: ${{ secrets.PRIVATE_KEY }}
+          envs: GITHUB_SHA
+          script: |
+            sudo docker ps
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/demo
+            sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/demo
+            sudo docker image prune -f
