@@ -28,7 +28,7 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build
 
-      # docker build & push to production
+      # docker build & push
       - name: Docker build & push to prod
         if: contains(github.ref, 'master')
         run: |
