@@ -1,4 +1,4 @@
-# github repository actions 페이지에 나타날 이름
+# github repository actions
 name: CI/CD using github actions & docker
 
 # event trigger
