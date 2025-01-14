@@ -22,10 +22,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # gradle build
+      # gradle permission + build
       - name: Build with Gradle
         run: |
-          chmod +x ./gradlew
+          chmod +x ./gradlew 
           ./gradlew build
 
       # docker build & push
