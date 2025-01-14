@@ -22,21 +22,20 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name : make application yml
+        if: |
+          contains(github.ref, 'master')
+        run: |
+          cd ./src/main/resources
+          touch ./application.yml
+          echo "${{ secrets.YML_CONTENT }}" > ./application.yml
+          shell: bash
+
       # gradle permission + build
       - name: Build with Gradle
         run: |
           chmod +x ./gradlew 
           ./gradlew build
-
-      - name : make application yml
-        if: |
-          contains(github.ref, 'master')
-        run: |
-          mkdir ./src/main/resources
-          cd ./src/main/resources
-          touch ./application.yml
-          echo "${{ secrets.YML_CONTENT }}" > ./application.yml
-          shell: bash
 
       # docker build & push
       - name: Docker build & push to prod
