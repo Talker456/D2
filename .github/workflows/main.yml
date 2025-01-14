@@ -48,7 +48,8 @@ jobs:
           key: ${{ secrets.ED_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
+            sudo docker-compose down
             sudo docker ps
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/demo
-            sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/demo
+            sudo docker-compose up
             sudo docker image prune -f
