@@ -28,6 +28,16 @@ jobs:
           chmod +x ./gradlew 
           ./gradlew build
 
+      - name : make application yml
+        if: |
+          contains(github.ref, 'master')
+        run: |
+          mkdir ./src/main/resources
+          cd ./src/main/resources
+          touch ./application.yml
+          echo "${{ secrets.YML_CONTENT }}" > ./application.yml
+          shell: bash
+
       # docker build & push
       - name: Docker build & push to prod
         if: contains(github.ref, 'master')
