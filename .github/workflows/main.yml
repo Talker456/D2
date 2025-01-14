@@ -29,7 +29,7 @@ jobs:
           cd ./src/main/resources
           touch ./application.yml
           echo "${{ secrets.YML_CONTENT }}" > ./application.yml
-          shell: bash
+        shell: bash
 
       # gradle permission + build
       - name: Build with Gradle
