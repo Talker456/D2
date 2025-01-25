@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample List</title>
+</head>
+<body>
+<div>
+    <input type="text" name="text" id="text">
+    <button id="create-btn" type="submit">Submit</button>
+</div>
+
+<div class="container">
+    <div th:each="item : ${samples}">
+        <div>
+            <div th:text="${item.text}"></div>
+            <div th:text="${item.createdAt}"></div>
+        </div>
+    </div>
+    <br><br>
+</div>
+
+<script src="/js/sample.js"></script>
+</body>
+</html>

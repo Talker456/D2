@@ -1,19 +1,19 @@
 package org.example.demo.model.dto;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.example.demo.model.Sample;
 import org.example.demo.repository.SampleRepository;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class SampleRequestDto {
     private String text;
 
-    @Builder
-    private SampleRequestDto(String text) {
-        this.text = text;
+    public Sample toEntity() {
+        return Sample.builder()
+                .text(text)
+                .build();
     }
 }
 

@@ -6,6 +6,8 @@ import org.example.demo.model.dto.SampleRequestDto;
 import org.example.demo.repository.SampleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SampleService {
@@ -16,26 +18,17 @@ public class SampleService {
         return sample.getText();
     }
 
-    public Long postSample(SampleRequestDto sampleRequestDto) {
-        String text = sampleRequestDto.getText();
-        return sampleRepository.save(sampleRepository.save(Sample.toEntity(text))).getId();
+//    public Long postSample(SampleRequestDto sampleRequestDto) {
+//        String text = sampleRequestDto.getText();
+//        return sampleRepository.save(sampleRepository.save(Sample.toEntity(text))).getId();
+//    }
+
+    public List<Sample> findAll() {
+        return sampleRepository.findAll();
+    }
+
+    public Sample save(SampleRequestDto sample) {
+        return sampleRepository.save(sample.toEntity());
     }
 }
 
-
-//@Service
-//@RequiredArgsConstructor
-//public class HelloService {
-//    private final HelloRepository helloRepository;
-//
-//    public String getHello(Long id) {
-//        Hello hello = helloRepository.getHelloById(id);
-//        return hello.getText();
-//    }
-//
-//    public Long postHello(HelloRequestDto helloRequestDto) {
-//        String text = helloRequestDto.getText();
-//        return helloRepository.save(helloRepository.save(Hello.toEntity(text))).getId();
-//    }
-//}
-//
