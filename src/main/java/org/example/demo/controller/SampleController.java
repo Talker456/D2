@@ -26,12 +26,6 @@ public class SampleController {
         return sampleService.getSample(id);
     }
 
-//    @PostMapping("/sample")
-//    public String postSample(@RequestBody SampleRequestDto sampleRequestDto) {
-//        log.info("POST /sample");
-//        return "redirect:/samples";
-//    }
-
     @GetMapping("/samples")
     public String getSamples(Model model) {
         List<SampleListViewResponse> samples = sampleService.findAll()
@@ -40,5 +34,10 @@ public class SampleController {
                 .toList();
         model.addAttribute("samples", samples);
         return "samples";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "plans";
     }
 }

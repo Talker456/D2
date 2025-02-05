@@ -18,11 +18,6 @@ public class SampleService {
         return sample.getText();
     }
 
-//    public Long postSample(SampleRequestDto sampleRequestDto) {
-//        String text = sampleRequestDto.getText();
-//        return sampleRepository.save(sampleRepository.save(Sample.toEntity(text))).getId();
-//    }
-
     public List<Sample> findAll() {
         return sampleRepository.findAll();
     }

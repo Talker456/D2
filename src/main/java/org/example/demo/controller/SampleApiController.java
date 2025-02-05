@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class ApiController {
+public class SampleApiController {
     private final SampleService sampleService;
-    private final Logger logger = LoggerFactory.getLogger(ApiController.class);
+    private final Logger logger = LoggerFactory.getLogger(SampleApiController.class);
 
     @PostMapping("/api/sample")
-    public ResponseEntity<Sample> addArticle(@RequestBody SampleRequestDto request) {
+    public ResponseEntity<Sample> addSample(@RequestBody SampleRequestDto request) {
         logger.info("POST /api/sample");
         Sample savedEntity = sampleService.save(request);
 
