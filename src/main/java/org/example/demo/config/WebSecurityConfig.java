@@ -26,10 +26,7 @@ public class WebSecurityConfig {
                     ar.anyRequest().authenticated();
                 })
                 .formLogin(login -> {
-                    login.usernameParameter("username");
-                    login.passwordParameter("password");
-                    login.loginPage("/login");
-                    login.defaultSuccessUrl("/plans");
+                    login.defaultSuccessUrl("/plans",true);
                 })
                 .build();
     }
