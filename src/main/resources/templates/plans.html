@@ -13,8 +13,8 @@
     <button id="create-btn" type="submit">Create</button>
 </div>
 <!--yyyy-MM-ddTHH:mm-->
-<div class="container" style="border-color:black;">
-    <div th:each="item : ${plans}">
+<div class="container">
+    <div th:each="item : ${plans}" style="border: 1px solid black; margin-bottom:6px;">
         <div>
             <div th:text="${item.title} "></div>
             <div th:text="'starts at : ' + ${#temporals.format(item.start, 'yyyy-MM-dd HH:mm')} "></div>
@@ -24,7 +24,7 @@
             <input type="text" name="title" th:id="'title'+${item.id}">
             <input type="text" name="start" th:id="'start'+${item.id}">
             <input type="text" name="end" th:id="'end'+${item.id}">
-            <button id="modify-btn" th:value="${item.id}" onclick="update(this)">Update</button>
+            <button id="modify-btn" th:value="${item.id}" onclick="update(this)" style="margin-bottom: 4px">Update</button>
         </div>
     </div>
     <br><br>
