@@ -52,7 +52,7 @@ jobs:
         id: deploy-prod
         if: contains(github.ref, 'master')
         with:
-          host: ${{ secrets.HOST_PROD }} # EC2 퍼블릭 IPv4
+          host: ${{ secrets.HOST_PROD }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.ED_PRIVATE_KEY }}
           envs: GITHUB_SHA
