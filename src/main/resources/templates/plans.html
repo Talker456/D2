@@ -13,12 +13,13 @@
     <button id="create-btn" type="submit">Create</button>
 </div>
 <!--yyyy-MM-ddTHH:mm-->
-<div class="container">
+<div class="container" style="border-color:black;">
     <div th:each="item : ${plans}">
         <div>
             <div th:text="${item.title} "></div>
-            <div th:text="'starts at : ' + ${item.start} "></div>
-            <div th:text="'ends at :' + ${item.end} "></div>
+            <div th:text="'starts at : ' + ${#temporals.format(item.start, 'yyyy-MM-dd HH:mm')} "></div>
+            <div th:text="'ends at :' + ${#temporals.format(item.end, 'yyyy-MM-dd HH:mm')} "></div>
+            <div th:text="'duration :' + ${item.duration} + 'minutes '"></div>
             <button id="delete-btn" th:value="${item.id}" onclick="delete_plan(this)">Delete</button>
             <input type="text" name="title" th:id="'title'+${item.id}">
             <input type="text" name="start" th:id="'start'+${item.id}">

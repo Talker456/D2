@@ -36,8 +36,9 @@ public class SampleController {
         return "samples";
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return "plans";
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
+
 }
