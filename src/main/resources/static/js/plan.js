@@ -46,9 +46,9 @@ function delete_plan(object){
     console.log(id);
     fetch('/api/plan/' + id, {
             method: 'DELETE',
-            })
-                .then((response) => {
-                    location.replace('/plans');
-                });
+    })
+           .then((response) => {
+               location.replace('/plans');
+           });
 }
 
