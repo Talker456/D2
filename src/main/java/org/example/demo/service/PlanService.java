@@ -39,4 +39,12 @@ public class PlanService {
 
         return plan;
     }
+
+    public List<Plan> findAllByUsername(String username) {
+        return planRepository.findByMaker(username);
+    }
+
+    public List<Plan> findAllByMakerOrderByStart(String username){
+        return planRepository.findByMakerOrderByStart(username);
+    }
 }

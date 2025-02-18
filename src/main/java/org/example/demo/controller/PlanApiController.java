@@ -1,6 +1,10 @@
 package org.example.demo.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.demo.model.Plan;
 import org.example.demo.model.dto.AddPlanRequest;
@@ -14,10 +18,16 @@ import java.security.Principal;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name="Swagger-PlanAPI",description = "Swagger-Description")
 public class PlanApiController {
 
     private final PlanService planService;
 
+    @Operation(summary = "Add-New-Plan", description = "Add-Description")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "ADDED"),
+            @ApiResponse(responseCode = "400", description = "X")
+    })
     @PostMapping("/api/plan")
     public ResponseEntity<Plan> addPlan(@RequestBody AddPlanRequest request, Principal principal) {
         Plan savePlan = planService.save(request, principal.getName());
@@ -25,6 +35,11 @@ public class PlanApiController {
 
     }
 
+    @Operation(summary = "Update-Plan",description = "Update-Description")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "UPDATED"),
+            @ApiResponse(responseCode = "400", description = "X")
+    })
     @PutMapping("/api/plan/{id}")
     public ResponseEntity<Plan> updatePlan(@PathVariable long id,
                                            @RequestBody UpdatePlanRequest request) {
@@ -33,6 +48,11 @@ public class PlanApiController {
         return ResponseEntity.ok().body(updatedPlan);
     }
 
+    @Operation(summary = "Delete-Plan",description = "Delete-Description")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "DELETED"),
+            @ApiResponse(responseCode = "400", description = "X")
+    })
     @DeleteMapping("/api/plan/{id}")
     public ResponseEntity<Void> deleteArticle(@PathVariable long id) {
         planService.delete(id);
