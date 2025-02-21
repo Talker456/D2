@@ -10,6 +10,7 @@
     <input type="text" name="title" id="title">
     <input type="text" name="start" id="start">
     <input type="text" name="end" id="end">
+    <input type="text" name="category" id="category">
     <button id="create-btn" type="submit">Create</button>
 </div>
 <div class="container">
@@ -19,10 +20,12 @@
             <div th:text="'starts at : ' + ${#temporals.format(item.start, 'yyyy-MM-dd HH:mm')} "></div>
             <div th:text="'ends at :' + ${#temporals.format(item.end, 'yyyy-MM-dd HH:mm')} "></div>
             <div th:text="'duration :' + ${item.duration} + 'minutes '"></div>
+            <div th:text="'duration :' + ${item.category}"></div>
             <button id="delete-btn" th:value="${item.id}" onclick="delete_plan(this)">Delete</button>
             <input type="text" name="title" th:id="'title'+${item.id}">
             <input type="text" name="start" th:id="'start'+${item.id}">
             <input type="text" name="end" th:id="'end'+${item.id}">
+            <input type="text" name="category" th:id="'category'+${item.id}">
             <button id="modify-btn" th:value="${item.id}" onclick="update(this)" style="margin-bottom: 4px">Update</button>
         </div>
     </div>
@@ -45,6 +48,7 @@
     </div>
     <br><br>
 </div>
+
 <script src="/js/plan.js"></script>
 </body>
 </html>

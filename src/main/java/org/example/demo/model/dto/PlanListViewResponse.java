@@ -14,6 +14,7 @@ public class PlanListViewResponse {
     private final LocalDateTime end;
     private final String maker;
     private final Long duration;
+    private final String category;
 
     public PlanListViewResponse(Plan plan) {
         id = plan.getId();
@@ -22,6 +23,7 @@ public class PlanListViewResponse {
         end = plan.getEnd();
         maker = plan.getMaker();
         duration = Duration.between(start, end).toMinutes();
+        category = plan.getCategory();
     }
 
 }

@@ -2,6 +2,7 @@ package org.example.demo.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.demo.model.dto.PlanCategoryCountResponse;
 import org.example.demo.model.dto.PlanListViewResponse;
 import org.example.demo.service.PlanService;
 import org.springframework.stereotype.Controller;
@@ -30,5 +31,12 @@ public class PlanViewController {
                 .toList();
         model.addAttribute("sortedPlans", sortedPlans);
         return "plans";
+    }
+
+    @GetMapping("/stats")
+    public String getStats(Model model, Principal principal) {
+        List<PlanCategoryCountResponse> list = planService.findCategoryCounts(principal.getName());
+        model.addAttribute("counts", list);
+        return "stats";
     }
 }

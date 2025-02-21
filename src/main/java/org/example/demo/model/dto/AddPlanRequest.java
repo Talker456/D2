@@ -19,12 +19,15 @@ public class AddPlanRequest {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     private LocalDateTime end;
 
+    private String category;
+
     public Plan toEntity(String maker) {
         return Plan.builder()
                 .title(title)
                 .start(start)
                 .end(end)
                 .maker(maker)
+                .category(category)
                 .build();
     }
 

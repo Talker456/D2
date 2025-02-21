@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.demo.model.Plan;
 import org.example.demo.model.dto.AddPlanRequest;
+import org.example.demo.model.dto.PlanCategoryCountResponse;
 import org.example.demo.model.dto.UpdatePlanRequest;
 import org.example.demo.repository.PlanRepository;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class PlanService {
         Plan plan = planRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
 
-        plan.update(request.getTitle(), request.getStart(), request.getEnd());
+        plan.update(request.getTitle(), request.getStart(), request.getEnd(),request.getCategory());
 
         return plan;
     }
@@ -46,5 +47,9 @@ public class PlanService {
 
     public List<Plan> findAllByMakerOrderByStart(String username){
         return planRepository.findByMakerOrderByStart(username);
+    }
+
+    public List<PlanCategoryCountResponse> findCategoryCounts(String username){
+        return planRepository.findCategories(username);
     }
 }

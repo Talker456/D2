@@ -39,17 +39,22 @@ public class Plan {
     @CreatedDate
     private LocalDateTime createdAt;
 
+    @Column(name="category")
+    private String category;
+
     @Builder
-    private Plan(String title, LocalDateTime start, LocalDateTime end, String maker) {
+    private Plan(String title, LocalDateTime start, LocalDateTime end, String maker,String category) {
         this.title = title;
         this.start = start;
         this.end = end;
         this.maker = maker;
+        this.category=category;
     }
 
-    public void update(String title,LocalDateTime start, LocalDateTime end) {
+    public void update(String title,LocalDateTime start, LocalDateTime end,String category) {
         this.title = title;
         this.start = start;
         this.end = end;
+        this.category=category;
     }
 }

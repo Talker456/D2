@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>stats</title>
+</head>
+<body>
+<!--<span th:if="${info.gender == 'F'}">여자</span>-->
+<h1>counts</h1>
+<div class="container">
+    <div th:each="item : ${counts}">
+        <div>
+            <div th:text="${item.category}"></div>
+            <div th:text="${item.count}"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/plan.js"></script>
+</body>
+</html>

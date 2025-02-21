@@ -11,6 +11,7 @@ if (createButton != null) {
                 title: document.getElementById('title').value,
                 start: document.getElementById('start').value,
                 end: document.getElementById('end').value,
+                category: document.getElementById('category').value,
             })
         })
             .then((response) => {
@@ -24,6 +25,7 @@ function update(object){
     let title = 'title'+id;
     let start = 'start'+id;
     let end = 'end'+id;
+    let category = 'category'+id;
 
         fetch('/api/plan/' + id, {
             method: 'PUT',
@@ -34,6 +36,7 @@ function update(object){
                 title: document.getElementById(title).value,
                 start: document.getElementById(start).value,
                 end: document.getElementById(end).value,
+                category: document.getElementById(category).value,
             })
         })
             .then((response) => {
