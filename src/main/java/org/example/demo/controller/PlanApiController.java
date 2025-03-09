@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,7 +33,17 @@ public class PlanApiController {
     public ResponseEntity<Plan> addPlan(@RequestBody AddPlanRequest request, Principal principal) {
         Plan savePlan = planService.save(request, principal.getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(savePlan);
+    }
 
+    @Operation(summary = "Add-Plans-4Week", description = "Add-Description")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "ADDED"),
+            @ApiResponse(responseCode = "400", description = "X")
+    })
+    @PostMapping("/api/plans")
+    public ResponseEntity<List<Plan>> addPlans(@RequestBody AddPlanRequest request, Principal principal) {
+        List<Plan> savedPlans = planService.saveAllWeek(request,principal.getName());
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPlans);
     }
 
     @Operation(summary = "Update-Plan",description = "Update-Description")

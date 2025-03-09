@@ -6,11 +6,15 @@ import lombok.RequiredArgsConstructor;
 import org.example.demo.model.Plan;
 import org.example.demo.model.dto.AddPlanRequest;
 import org.example.demo.model.dto.PlanCategoryCountResponse;
+import org.example.demo.model.dto.PlanListViewResponse;
 import org.example.demo.model.dto.UpdatePlanRequest;
 import org.example.demo.repository.PlanRepository;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
 import java.util.List;
 
 @Service
@@ -25,6 +29,38 @@ public class PlanService {
 
     public Plan save(AddPlanRequest request, String maker) {
         return planRepository.save(request.toEntity(maker));
+    }
+
+    public List<Plan> saveAllWeek(AddPlanRequest request, String maker) {
+        List<Plan> plans;
+
+        Plan second = AddPlanRequest.builder()
+                .title(request.getTitle())
+                .start(request.getStart().plusDays(7))
+                .end(request.getEnd().plusDays(7))
+                .category(request.getCategory())
+                .build()
+                .toEntity(maker);
+
+        Plan third = AddPlanRequest.builder()
+                .title(request.getTitle())
+                .start(request.getStart().plusDays(14))
+                .end(request.getEnd().plusDays(14))
+                .category(request.getCategory())
+                .build()
+                .toEntity(maker);
+
+        Plan fourth = AddPlanRequest.builder()
+                .title(request.getTitle())
+                .start(request.getStart().plusDays(21))
+                .end(request.getEnd().plusDays(21))
+                .category(request.getCategory())
+                .build()
+                .toEntity(maker);
+
+        plans = List.of(request.toEntity(maker), second, third, fourth);
+
+        return planRepository.saveAll(plans);
     }
 
     public void delete(long id) {
@@ -51,5 +87,9 @@ public class PlanService {
 
     public List<PlanCategoryCountResponse> findCategoryCounts(String username){
         return planRepository.findCategories(username);
+    }
+
+    public List<Plan> findWeeklyPlans(String username,LocalDateTime start,LocalDateTime end){
+        return planRepository.findWeeklyPlans(username, start, end);
     }
 }

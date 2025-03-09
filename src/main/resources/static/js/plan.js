@@ -1,8 +1,29 @@
 const createButton = document.getElementById('create-btn');
+const createWeekButton = document.getElementById('create-btn-week');
 
 if (createButton != null) {
     createButton.addEventListener('click', event => {
         fetch('/api/plan', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: document.getElementById('title').value,
+                start: document.getElementById('start').value,
+                end: document.getElementById('end').value,
+                category: document.getElementById('category').value,
+            })
+        })
+            .then((response) => {
+                location.replace('/plans');
+            });
+    });
+}
+
+if (createWeekButton != null) {
+    createWeekButton.addEventListener('click', event => {
+        fetch('/api/plans', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Planner View</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div th:each="item : ${weeklyPlans}">
+        <div th:text = "${item.title}"></div>
+        <div th:text = "${#temporals.dayOfWeekName(item.start)}"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            1 of 7
+            <div th:each="item : ${weeklyPlans}">
+                <div th:if="${#temporals.dayOfWeekName(item.start)}=='월요일'">
+                    <span th:text="${item.title}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            2 of 7
+            <div th:each="item : ${weeklyPlans}">
+                <div th:if="${#temporals.dayOfWeekName(item.start)}=='화요일'">
+                    <span th:text="${item.title}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            3 of 7
+            <div th:each="item : ${weeklyPlans}">
+                <div th:if="${#temporals.dayOfWeekName(item.start)}=='수요일'">
+                    <span th:text="${item.title}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            4 of 7
+            <div th:each="item : ${weeklyPlans}">
+                <div th:if="${#temporals.dayOfWeekName(item.start)}=='목요일'">
+                    <span th:text="${item.title}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            5 of 7
+            <div th:each="item : ${weeklyPlans}">
+                <div th:if="${#temporals.dayOfWeekName(item.start)}=='금요일'">
+                    <span th:text="${item.title}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            6 of 7
+            <div th:each="item : ${weeklyPlans}">
+                <div th:if="${#temporals.dayOfWeekName(item.start)}=='토요일'">
+                    <span th:text="${item.title}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            7 of 7
+            <div th:each="item : ${weeklyPlans}">
+                <div th:if="${#temporals.dayOfWeekName(item.start)}=='일요일'">
+                    <span th:text="${item.title}"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -3,6 +3,7 @@ package org.example.demo.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import org.example.demo.model.Plan;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
+@Builder
 public class AddPlanRequest {
     private String title;
 
