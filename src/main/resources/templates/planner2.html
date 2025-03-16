@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Planner View</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <h1>My First Bootstrap 4 Page</h1>
+    <p>Resize this responsive page to see the effect!</p>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container rounded-sm" style="margin-top:30px;">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="row">
+                <div id="weekly-plans" class="col border" th:each="day : ${weeks}">
+                    <span id="date" th:text="${#temporals.format(day,'yyyy-MM-dd')}"></span>
+                    <span id="day-of-week" th:text="${#temporals.dayOfWeekName(day)}"></span>
+                    <div th:each="item : ${weeklyPlans}">
+                        <div th:if="${#temporals.dayOfWeekName(item.start)}==${#temporals.dayOfWeekName(day)}">
+                            <span th:text="${item.title}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 border">
+            <div class="form-group">
+                <input type="text" class="form-control" name="title" id="title">
+            </div>
+
+
+            <div id="radio-div" class="form-group" th:each="day : ${weeks}">
+                <input type="radio" name="day-of-week" th:value="${day}">
+<!--                <label th:text="${#temporals.dayOfWeekName(day)"></label><br>  !!temporal exception-->
+                <span th:text="${#temporals.dayOfWeekName(day)}"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="time" class="form-control" name="start" id="start">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="duration" id="duration">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="category" id="category">
+            </div>
+            <button id="create-btn" type="submit">Create</button>
+        </div>
+    </div>
+</div>
+
+<script src="/js/planner.js"></script>
+</body>
+</html>

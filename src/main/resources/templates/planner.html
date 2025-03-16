@@ -8,15 +8,14 @@
 </head>
 <body>
 <div class="container">
-    <div th:each="item : ${weeklyPlans}">
-        <div th:text = "${item.title}"></div>
-        <div th:text = "${#temporals.dayOfWeekName(item.start)}"></div>
-    </div>
+
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col">
+            <span th:text="${startOfWeek}"></span>
+            <span th:text="${#temporals.dayOfWeekName(startOfWeek)}"></span>
             1 of 7
             <div th:each="item : ${weeklyPlans}">
                 <div th:if="${#temporals.dayOfWeekName(item.start)}=='월요일'">
